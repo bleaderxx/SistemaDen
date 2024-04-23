@@ -1,0 +1,26 @@
+{
+  "name": "backend_dental",
+  "version": "1.0.0",
+  "description": "proyecto dental en nodejs y react",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/index.js",
+    "build": "npx babel src/ --out-dir dist",
+    "start": "node dist/index.js"
+  },
+  "author": "shnayder",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7",
+    "nodemon": "^3.1.0",
+    "sequelize": "^6.37.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4",
+    "@babel/node": "^7.23.9",
+    "@babel/preset-env": "^7.24.4",
+    "sequelize-cli": "^6.6.2"
+  }
+}
