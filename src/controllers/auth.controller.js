@@ -1,5 +1,6 @@
 import models from "../database/models/index.js"
 import bcrypt from "bcrypt"
+import jwt from "jsonwebtoken";
 
 const login = async (req, res) => {
 
@@ -14,7 +15,19 @@ const login = async (req, res) => {
     const correcto = await bcrypt.compare(password, user.password); //esto es para comparar password del cifrado con el no cifrado
     if (correcto) {
 
+        const payload = {
+            id: user.id,
+            email: user.email,
+            time: new Date()
+        }
+
+        const {time} = payload;
+        console.log(time);
+
         //GENERAMOS TOKEN
+        const token = jwt.sign(payload, process.env.JWT_SECRET || "MI_CODIGO_SECRETO_JWT", {expiresIn: 60*60})
+
+        return res.status(200).json({ access_token: token, user: user, error: false})
 
     } 
         return res.status(422).json({ message: "La contraseña es incorrecta" })
